@@ -116,6 +116,7 @@ type Client struct {
 	ShippingZone               ShippingZoneService
 	ProductListing             ProductListingService
 	AccessScopes               AccessScopesService
+	FulfillmentService         FulfillmentServiceService
 	CarrierService             CarrierServiceService
 }
 
@@ -292,6 +293,7 @@ func NewClient(app App, shopName, token string, opts ...Option) *Client {
 	c.ShippingZone = &ShippingZoneServiceOp{client: c}
 	c.ProductListing = &ProductListingServiceOp{client: c}
 	c.AccessScopes = &AccessScopesServiceOp{client: c}
+	c.FulfillmentService = &FulfillmentServiceServiceOp{client: c}
 	c.CarrierService = &CarrierServiceOp{client: c}
 
 	// apply any options
