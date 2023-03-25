@@ -115,6 +115,7 @@ type Client struct {
 	InventoryItem              InventoryItemService
 	ShippingZone               ShippingZoneService
 	ProductListing             ProductListingService
+	InventoryLevel             InventoryLevelService
 	AccessScopes               AccessScopesService
 	FulfillmentService         FulfillmentServiceService
 	CarrierService             CarrierServiceService
@@ -292,6 +293,7 @@ func NewClient(app App, shopName, token string, opts ...Option) *Client {
 	c.InventoryItem = &InventoryItemServiceOp{client: c}
 	c.ShippingZone = &ShippingZoneServiceOp{client: c}
 	c.ProductListing = &ProductListingServiceOp{client: c}
+	c.InventoryLevel = &InventoryLevelServiceOp{client: c}
 	c.AccessScopes = &AccessScopesServiceOp{client: c}
 	c.FulfillmentService = &FulfillmentServiceServiceOp{client: c}
 	c.CarrierService = &CarrierServiceOp{client: c}
