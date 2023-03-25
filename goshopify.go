@@ -448,6 +448,9 @@ func wrapSpecificError(r *http.Response, err ResponseError) error {
 		err.Message = http.StatusText(err.Status)
 	}
 
+	if err.Status == http.StatusUnprocessableEntity {
+		err.Message = http.StatusText(err.Status)
+	}
 	return err
 }
 
@@ -655,5 +658,10 @@ func (c *Client) Put(path string, data, resource interface{}) error {
 
 // Delete performs a DELETE request for the given path
 func (c *Client) Delete(path string) error {
-	return c.CreateAndDo("DELETE", path, nil, nil, nil)
+	return c.DeleteWithOptions(path, nil)
+}
+
+// DeleteWithOptions performs a DELETE request for the given path WithOptions
+func (c *Client) DeleteWithOptions(path string, options interface{}) error {
+	return c.CreateAndDo("DELETE", path, nil, options, nil)
 }
