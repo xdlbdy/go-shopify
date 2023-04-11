@@ -764,6 +764,19 @@ func TestOrderCancelFulfillment(t *testing.T) {
 	FulfillmentTests(t, *returnedFulfillment)
 }
 
+func TestOrderDelete(t *testing.T) {
+	setup()
+	defer teardown()
+
+	httpmock.RegisterResponder("DELETE", fmt.Sprintf("https://fooshop.myshopify.com/%s/orders/1.json", client.pathPrefix),
+		httpmock.NewStringResponder(200, "{}"))
+
+	err := client.Order.Delete(1)
+	if err != nil {
+		t.Errorf("Order.Delete returned error: %v", err)
+	}
+}
+
 // TestLineItemUnmarshalJSON tests unmarsalling a LineItem from json
 func TestLineItemUnmarshalJSON(t *testing.T) {
 	setup()

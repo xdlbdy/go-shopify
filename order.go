@@ -24,6 +24,7 @@ type OrderService interface {
 	Cancel(int64, interface{}) (*Order, error)
 	Close(int64) (*Order, error)
 	Open(int64) (*Order, error)
+	Delete(int64) error
 
 	// MetafieldsService used for Order resource to communicate with Metafields resource
 	MetafieldsService
@@ -456,6 +457,13 @@ func (s *OrderServiceOp) Open(orderID int64) (*Order, error) {
 	resource := new(OrderResource)
 	err := s.client.Post(path, nil, resource)
 	return resource.Order, err
+}
+
+// Delete order
+func (s *OrderServiceOp) Delete(orderID int64) error {
+	path := fmt.Sprintf("%s/%d.json", ordersBasePath, orderID)
+	err := s.client.Delete(path)
+	return err
 }
 
 // List metafields for an order
