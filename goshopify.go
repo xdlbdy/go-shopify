@@ -91,6 +91,7 @@ type Client struct {
 	Order                      OrderService
 	Fulfillment                FulfillmentService
 	DraftOrder                 DraftOrderService
+	AbandonedCheckout          AbandonedCheckoutService
 	Shop                       ShopService
 	Webhook                    WebhookService
 	Variant                    VariantService
@@ -270,6 +271,7 @@ func NewClient(app App, shopName, token string, opts ...Option) *Client {
 	c.Order = &OrderServiceOp{client: c}
 	c.Fulfillment = &FulfillmentServiceOp{client: c}
 	c.DraftOrder = &DraftOrderServiceOp{client: c}
+	c.AbandonedCheckout = &AbandonedCheckoutServiceOp{client: c}
 	c.Shop = &ShopServiceOp{client: c}
 	c.Webhook = &WebhookServiceOp{client: c}
 	c.Variant = &VariantServiceOp{client: c}
