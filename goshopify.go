@@ -123,6 +123,7 @@ type Client struct {
 	CarrierService             CarrierServiceService
 	Payouts                    PayoutsService
 	GiftCard                   GiftCardService
+	FulfillmentOrder           FulfillmentOrderService
 	GraphQL                    GraphQLService
 }
 
@@ -305,6 +306,7 @@ func NewClient(app App, shopName, token string, opts ...Option) *Client {
 	c.CarrierService = &CarrierServiceOp{client: c}
 	c.Payouts = &PayoutsServiceOp{client: c}
 	c.GiftCard = &GiftCardServiceOp{client: c}
+	c.FulfillmentOrder = &FulfillmentOrderServiceOp{client: c}
 	c.GraphQL = &GraphQLServiceOp{client: c}
 
 	// apply any options
