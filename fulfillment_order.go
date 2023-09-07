@@ -26,10 +26,10 @@ type FulfillmentOrderHoldReason string
 
 const (
 	HoldReasonAwaitingPayment  FulfillmentOrderHoldReason = "awaiting_payment"
-	HoldReasonHighRiskOfFraud                             = "high_risk_of_fraud"
-	HoldReasonIncorrectAddress                            = "incorrect_address"
-	HoldReasonOutOfStock                                  = "inventory_out_of_stock"
-	HoldReasonOther                                       = "other"
+	HoldReasonHighRiskOfFraud  FulfillmentOrderHoldReason = "high_risk_of_fraud"
+	HoldReasonIncorrectAddress FulfillmentOrderHoldReason = "incorrect_address"
+	HoldReasonOutOfStock       FulfillmentOrderHoldReason = "inventory_out_of_stock"
+	HoldReasonOther            FulfillmentOrderHoldReason = "other"
 )
 
 // FulfillmentOrderServiceOp handles communication with the fulfillment order
@@ -141,12 +141,12 @@ type FulfillmentOrder struct {
 	UpdatedAt           *time.Time                          `json:"updated_at,omitempty"`
 }
 
-// FulfillmentOrdersResource represents the result from the fulfilment_orders.json endpoint
+// FulfillmentOrdersResource represents the result from the fulfillment_orders.json endpoint
 type FulfillmentOrdersResource struct {
 	FulfillmentOrders []FulfillmentOrder `json:"fulfillment_orders"`
 }
 
-// FulfillmentOrderResource represents the result from the fulfilment_orders/<id>.json endpoint
+// FulfillmentOrderResource represents the result from the fulfillment_orders/<id>.json endpoint
 type FulfillmentOrderResource struct {
 	FulfillmentOrder *FulfillmentOrder `json:"fulfillment_order"`
 }
@@ -157,7 +157,7 @@ type FulfillmentOrderMoveResource struct {
 	MovedFulfillmentOrder    FulfillmentOrder `json:"moved_fulfillment_order"`
 }
 
-// FulfillmentOrderPathPrefix returns the prefix for a fulfillmentorder path
+// FulfillmentOrderPathPrefix returns the prefix for a fulfillmentOrder path
 func FulfillmentOrderPathPrefix(resource string, resourceID int64) string {
 	return fmt.Sprintf("%s/%d", resource, resourceID)
 }
