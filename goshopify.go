@@ -235,6 +235,7 @@ func (c *Client) NewRequest(method, relPath string, body, options interface{}) (
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("User-Agent", UserAgent)
+	req.Header.Add("X-Shopify-Api-Features", "include-presentment-prices")
 	if c.token != "" {
 		req.Header.Add("X-Shopify-Access-Token", c.token)
 	} else if c.app.Password != "" {
