@@ -1161,6 +1161,10 @@ func testShippingLines(t *testing.T, expected, actual ShippingLines) {
 		t.Errorf("ShippingLines.CarrierIdentifier should be (%v), was (%v)", expected.CarrierIdentifier, actual.CarrierIdentifier)
 	}
 
+	if actual.Handle != expected.Handle {
+		t.Errorf("ShippingLines.Handle should be (%v), was (%v)", expected.Handle, actual.Handle)
+	}
+
 	testTaxLines(t, expected.TaxLines, actual.TaxLines)
 }
 
@@ -1346,5 +1350,6 @@ func validShippingLines() ShippingLines {
 				Rate:  &tl2Rate,
 			},
 		},
+		Handle: "test",
 	}
 }
